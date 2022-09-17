@@ -18,26 +18,42 @@ public class CrudCargoService {
     public void inicial(Scanner sc) {
 
         while (true) {
-            System.out.println("[CARGO] Qual ação deseja executar?");
+            System.out.println("\n[CARGO] Qual ação deseja executar?");
+            System.out.println("1 - Listar");
+            System.out.println("2 - Novo");
+            System.out.println("3 - Atualizar");
+            System.out.println("4 - Excluir");
             System.out.println("0 - Sair");
-            System.out.println("1 - Novo");
-            System.out.println("2 - Atualizar");
 
             int action = sc.nextInt();
 
             switch (action) {
                 case 1:
-                    salvar(sc);
+                    listar();
                     break;
 
                 case 2:
+                    salvar(sc);
+                    break;
+
+                case 3:
                     atualizar(sc);
+                    break;
+
+                case 4:
+                    excluir(sc);
                     break;
 
                 default:
                     return;
             }
         }
+    }
+
+    private void listar() {
+        cargoRepository
+                .findAll()
+                .forEach(System.out::println);
     }
 
     private void salvar(Scanner sc) {
@@ -49,7 +65,7 @@ public class CrudCargoService {
     }
 
     private void atualizar(Scanner sc) {
-        System.out.println("ID registro para alterar: ");
+        System.out.println("ID do registro para alterar: ");
         int id = sc.nextInt();
 
         System.out.println("Insira a nova descrição:");
@@ -58,5 +74,13 @@ public class CrudCargoService {
         Cargo cargo = new Cargo(id, descricao);
         cargoRepository.save(cargo);
         System.out.println("Cargo atualizado!");
+    }
+
+    private void excluir(Scanner sc) {
+        System.out.println("ID do registro para excluir: ");
+        int id = sc.nextInt();
+
+        cargoRepository.deleteById(id);
+        System.out.println("Cargo excluído");
     }
 }
