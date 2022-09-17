@@ -65,7 +65,7 @@ public class CrudCargoService {
     }
 
     private void atualizar(Scanner sc) {
-        System.out.println("ID do registro para alterar: ");
+        System.out.println("ID do cargo para alterar: ");
         int id = sc.nextInt();
 
         System.out.println("Insira a nova descrição:");
@@ -77,7 +77,7 @@ public class CrudCargoService {
     }
 
     private void excluir(Scanner sc) {
-        System.out.println("ID do registro para excluir: ");
+        System.out.println("ID do cargo para excluir: ");
         int id = sc.nextInt();
 
         cargoRepository.deleteById(id);

@@ -1,7 +1,5 @@
 package br.com.alura.spring.data;
 
-import br.com.alura.spring.data.orm.Cargo;
-import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.CrudFuncionarioService;
 import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
@@ -58,6 +56,7 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 
 				case 3:
+					crudUnidadeTrabalhoService.inicial(sc);
 					break;
 
 				default:

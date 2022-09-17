@@ -22,12 +22,7 @@ public class UnidadeTrabalho {
     private String descricao;
     private String endereco;
 
-    @ManyToMany
-    @JoinTable(
-            name = "funcionario_unidade_trabalho",
-            joinColumns = @JoinColumn(name = "funcionario_id"),
-            inverseJoinColumns = @JoinColumn(name = "unidade_trabalho_id")
-    )
+    @ManyToMany(mappedBy = "unidadeTrabalhos", fetch = FetchType.EAGER)
     private List<Funcionario> funcionarios;
 
     @Override
