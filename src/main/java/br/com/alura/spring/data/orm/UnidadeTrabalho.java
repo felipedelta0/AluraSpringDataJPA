@@ -10,34 +10,33 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "cargos")
-public class Cargo {
+@Table(name = "unidade_trabalho")
+public class UnidadeTrabalho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
+    private String endereco;
 
-    @OneToMany(mappedBy = "cargo")
+    @ManyToMany
+    @JoinTable(
+            name = "funcionario_unidade_trabalho",
+            joinColumns = @JoinColumn(name = "funcionario_id"),
+            inverseJoinColumns = @JoinColumn(name = "unidade_trabalho_id")
+    )
     private List<Funcionario> funcionarios;
-
-    public Cargo(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Cargo(Integer id, String descricao) {
-        this.id = id;
-        this.descricao = descricao;
-    }
 
     @Override
     public String toString() {
-        return "Cargo{" +
+        return "UnidadeTrabalho{" +
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", funcionarios=" + funcionarios +
                 '}';
     }
 }
