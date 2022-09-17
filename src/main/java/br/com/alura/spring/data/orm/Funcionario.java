@@ -51,8 +51,7 @@ public class Funcionario {
                 ", cpf='" + cpf + '\'' +
                 ", salario=" + salario +
                 ", dataContratacao=" + dataContratacao +
-                ", cargo=" + cargo +
-                ", unidadeTrabalhos=" + unidadeTrabalhos +
+                ", cargo=" + cargo.getDescricao() +
                 '}';
     }
 }
