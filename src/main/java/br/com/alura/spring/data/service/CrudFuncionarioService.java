@@ -5,7 +5,12 @@ import br.com.alura.spring.data.orm.UnidadeTrabalho;
 import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
 import br.com.alura.spring.data.repository.UnidadeTrabalhoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -44,7 +49,7 @@ public class CrudFuncionarioService {
 
             switch (action) {
                 case 1:
-                    listar();
+                    listar(sc);
                     break;
 
                 case 2:
@@ -65,10 +70,18 @@ public class CrudFuncionarioService {
         }
     }
 
-    private void listar() {
-        funcionarioRepository
-                .findAll()
-                .forEach(System.out::println);
+    private void listar(Scanner sc) {
+        System.out.println("Qual página deseja visualizar: ");
+        Integer page = sc.nextInt();
+
+        Pageable pageable = PageRequest.of(page, 2, Sort.unsorted());
+        Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
+
+        System.out.println("\n");
+        System.out.println(funcionarios);
+        System.out.println("Página atual: " + funcionarios.getNumber());
+        System.out.println("Total elementos: " + funcionarios.getTotalElements());
+        funcionarios.forEach(System.out::println);
     }
 
     private void salvar(Scanner sc) {
