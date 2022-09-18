@@ -25,6 +25,7 @@ public class RelatoriosService {
             System.out.println("1 - Busca Funcionario por Nome");
             System.out.println("2 - Busca Funcionario por Nome, Data de Contratação e Salário");
             System.out.println("3 - Busca Funcionario Data de Contratação Maior ou Igual");
+            System.out.println("4 - Busca Funcionários e Salários");
             System.out.println("0 - Sair");
 
             int action = sc.nextInt();
@@ -40,6 +41,10 @@ public class RelatoriosService {
 
                 case 3:
                     buscaFuncionarioDataContratacao(sc);
+                    break;
+
+                case 4:
+                    pesquisaFuncionarioSalario();
                     break;
 
                 default:
@@ -75,5 +80,10 @@ public class RelatoriosService {
 
         funcionarioRepository.findDataContratacaoMaiorQue(data)
                 .forEach(System.out::println);
+    }
+
+    private void pesquisaFuncionarioSalario() {
+        funcionarioRepository.findFuncionarioSalario()
+                .forEach(f -> System.out.println("Funcionario " + f.getId() + ": " + f.getNome() + " | Salário: " + f.getSalario()));
     }
 }
