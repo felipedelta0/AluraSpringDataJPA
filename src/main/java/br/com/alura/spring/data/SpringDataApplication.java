@@ -1,9 +1,6 @@
 package br.com.alura.spring.data;
 
-import br.com.alura.spring.data.service.CrudCargoService;
-import br.com.alura.spring.data.service.CrudFuncionarioService;
-import br.com.alura.spring.data.service.CrudUnidadeTrabalhoService;
-import br.com.alura.spring.data.service.RelatoriosService;
+import br.com.alura.spring.data.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +16,7 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService crudFuncionarioService;
 	private final CrudUnidadeTrabalhoService crudUnidadeTrabalhoService;
 	private final RelatoriosService relatoriosService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
@@ -39,6 +37,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade Trabalho");
 			System.out.println("4 - Relatórios");
+			System.out.println("5 - Relatório Dinâmico");
 			System.out.println("0 - Sair");
 
 			int action = sc.nextInt();
@@ -58,6 +57,10 @@ public class SpringDataApplication implements CommandLineRunner {
 
 				case 4:
 					relatoriosService.inicial(sc);
+					break;
+
+				case 5:
+					relatorioFuncionarioDinamico.inicial(sc);
 					break;
 
 				default:
